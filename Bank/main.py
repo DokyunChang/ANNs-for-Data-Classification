@@ -46,11 +46,9 @@ X[:, 6] = labelencoder.fit_transform(X[:, 6])
 X[:, 7] = labelencoder.fit_transform(X[:, 7])
 X[:, 11] = labelencoder.fit_transform(X[:, 11])
 
-
 # Splits data set into training and test data. 
 #   test_size = 0.3: 30% data for testing
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3, random_state = 0)
-
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.3)
 
 # Standardize all data from different columns
 sc = StandardScaler()
@@ -59,25 +57,26 @@ X_train = sc.fit_transform(X_train)
 # fit() already generated, can use just transform()
 X_test = sc.transform(X_test)
 
-
 # Start ANN
 network = Sequential()
 # Creates 5 layers; input, hidden 1, hidden 2, hidden 3, output
 #   Input: Dimension of 12; input_dim=12. 12 variables per case in data
-#   Hidden 1: Dimension of 16.
+#   Hidden 1: Dimension of .
 #             Activation function: relu. Cheap and fast to use, generally effective.
-#   Hidden 2: Dimension of 32.
+#   Hidden 2: Dimension of .
+#             Activation function: relu. Cheap and fast to use, generally effective.
+#   Hidden 3: Dimension of .
 #             Activation function: relu. Cheap and fast to use, generally effective.
 #   Output: Dimension of 1. Needs to be a single value for prediction
 #           Activation function: sigmoid. Sigmoid is especially suited for finalizing predictions that are binary in nature.
-network.add(Dense(12, activation='relu', input_dim=12))
+network.add(Dense(36, activation='relu', input_dim=12))
 network.add(Dense(24, activation='relu'))
-network.add(Dense(36, activation='relu'))
+network.add(Dense(12, activation='relu'))
 network.add(Dense(1, activation='sigmoid'))
 # Compile model
 network.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-# Fitting the ANN to the Training set
-fitModel = network.fit(X_train, y_train, epochs=100, batch_size=64)
+# Generate the ANN using training set
+fitModel = network.fit(X_train, y_train, epochs=100, batch_size=256)
 
 # Uses trained network to predict the test data
 y_pred = network.predict(X_test)
