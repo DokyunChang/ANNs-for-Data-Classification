@@ -61,11 +61,11 @@ X_test = sc.transform(X_test)
 network = Sequential()
 # Creates 5 layers; input, hidden 1, hidden 2, hidden 3, output
 #   Input: Dimension of 12; input_dim=12. 12 variables per case in data
-#   Hidden 1: Dimension of .
+#   Hidden 1: Dimension of 36.
 #             Activation function: relu. Cheap and fast to use, generally effective.
-#   Hidden 2: Dimension of .
+#   Hidden 2: Dimension of 24.
 #             Activation function: relu. Cheap and fast to use, generally effective.
-#   Hidden 3: Dimension of .
+#   Hidden 3: Dimension of 12.
 #             Activation function: relu. Cheap and fast to use, generally effective.
 #   Output: Dimension of 1. Needs to be a single value for prediction
 #           Activation function: sigmoid. Sigmoid is especially suited for finalizing predictions that are binary in nature.
