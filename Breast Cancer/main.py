@@ -45,7 +45,7 @@ network.add(Dense(32, activation='relu'))
 network.add(Dense(1, activation='sigmoid'))
 # Compile model
 network.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-# Fitting the ANN to the Training set
+# Generate the ANN using training set
 fitModel = network.fit(X_train, y_train, epochs=150, batch_size=100)
 
 # Uses trained network to predict the test data
